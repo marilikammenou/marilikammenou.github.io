@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Marili Kammenou</title>
+<meta name="description" content="Marili Kammenou — Maths, Data Science & Agentic AI. Building intelligent systems, writing about what they mean."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a09;
+  --paper:#f5f3ee;
+  --cream:#ede9e1;
+  --warm:#b8a99a;
+  --muted:#7a6f65;
+  --border:rgba(0,0,0,0.1);
+  --gold:#c9a84c;
+  --rose:#c4697a;
+  --teal:#3d8b85;
+  --violet:#7c5cbf;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--ink);
+  color:var(--paper);
+  font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:58px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;
+  background:rgba(10,10,9,0.88);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:300;letter-spacing:0.04em;
+  color:var(--paper);text-decoration:none;
+}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  font-size:13px;font-weight:300;letter-spacing:0.06em;text-transform:uppercase;
+  color:rgba(245,243,238,0.45);text-decoration:none;transition:color 0.25s;
+}
+.nav-links a:hover{color:var(--paper)}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:grid;grid-template-rows:1fr auto;
+  position:relative;overflow:hidden;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+.hero-content{
+  position:relative;z-index:10;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 2.5rem 5rem;
+  max-width:1100px;margin:0 auto;width:100%;
+  padding-top:120px;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(245,243,238,0.4);margin-bottom:1.6rem;
+}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.8rem,9vw,7.5rem);
+  font-weight:300;line-height:1.0;letter-spacing:-0.02em;
+  color:var(--paper);margin-bottom:2rem;
+}
+h1 em{font-style:italic;color:rgba(245,243,238,0.45)}
+.hero-bio{
+  font-size:15px;font-weight:300;line-height:1.85;
+  color:rgba(245,243,238,0.55);max-width:520px;margin-bottom:3rem;
+}
+.hero-bio strong{color:var(--paper);font-weight:400}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:11px 26px;border-radius:2px;
+  font-size:13px;font-weight:300;letter-spacing:0.07em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.25s;cursor:pointer;border:none;
+  font-family:'Inter',sans-serif;
+}
+.btn-light{background:var(--paper);color:var(--ink)}
+.btn-light:hover{background:#fff}
+.btn-outline{background:transparent;color:var(--paper);border:1px solid rgba(245,243,238,0.22)}
+.btn-outline:hover{border-color:rgba(245,243,238,0.6)}
+
+.hero-scroll{
+  position:relative;z-index:10;
+  padding:1.5rem 2.5rem;
+  max-width:1100px;margin:0 auto;width:100%;
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.scroll-hint{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,243,238,0.25)}
+.scroll-stats{display:flex;gap:2.5rem}
+.stat-item{text-align:right}
+.stat-num{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:300;color:var(--paper);line-height:1;
+}
+.stat-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,243,238,0.3)}
+
+/* ART DIVIDERS */
+.art-divider{width:100%;height:400px;display:block;overflow:hidden}
+.art-divider canvas{width:100%;height:100%;display:block}
+
+/* ABOUT */
+#about{background:#0f0e0d;padding:0}
+.section-inner{max-width:900px;margin:0 auto;padding:100px 2.5rem}
+.section-label{
+  font-size:10px;letter-spacing:0.16em;text-transform:uppercase;
+  color:rgba(245,243,238,0.28);margin-bottom:3rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.07)}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:300;letter-spacing:-0.02em;line-height:1.1;
+  color:var(--paper);margin-bottom:2.5rem;
+}
+h2 em{font-style:italic;color:rgba(245,243,238,0.38)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem}
+.about-prose p{
+  font-size:15px;font-weight:300;line-height:1.9;
+  color:rgba(245,243,238,0.6);margin-bottom:1.4rem;
+}
+.about-prose p:last-child{margin-bottom:0}
+.about-prose strong{color:var(--paper);font-weight:400}
+.about-facts{display:flex;flex-direction:column}
+.fact-row{padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,0.07)}
+.fact-row:first-child{border-top:1px solid rgba(255,255,255,0.07)}
+.fact-key{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,243,238,0.28);margin-bottom:5px}
+.fact-val{font-size:14px;font-weight:300;color:rgba(245,243,238,0.65);line-height:1.6}
+.fact-val a{color:rgba(245,243,238,0.65);text-decoration:underline;text-underline-offset:3px}
+.fact-val a:hover{color:var(--paper)}
+.social-row{display:flex;flex-direction:column;gap:7px;margin-top:3px}
+.social-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:300;
+  color:rgba(245,243,238,0.55);text-decoration:none;transition:color 0.2s;
+}
+.social-link:hover{color:var(--paper)}
+
+/* LANGUAGES */
+.lang-stripe{
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:3rem 2.5rem;overflow:hidden;
+}
+.lang-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:0}
+.lang-label{
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(245,243,238,0.22);white-space:nowrap;margin-right:3rem;
+}
+.lang-items{display:flex;gap:0;flex-wrap:wrap}
+.lang-item{
+  padding:0.6rem 1.8rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:300;font-style:italic;
+  color:rgba(245,243,238,0.4);
+  border-right:1px solid rgba(255,255,255,0.07);
+  white-space:nowrap;
+}
+.lang-item:first-child{border-left:1px solid rgba(255,255,255,0.07)}
+.lang-item span{
+  font-family:'Inter',sans-serif;font-style:normal;
+  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(245,243,238,0.18);display:block;margin-top:2px;
+}
+
+/* PROJECTS — light band */
+.band{background:var(--paper);color:var(--ink);padding:90px 2.5rem}
+.band .section-inner{padding:0;max-width:900px;margin:0 auto}
+.band .section-label{color:rgba(10,10,9,0.3)}
+.band .section-label::after{background:rgba(0,0,0,0.08)}
+.band h2{color:var(--ink)}
+.band h2 em{color:rgba(10,10,9,0.3)}
+.projects-list{margin-top:3.5rem;display:flex;flex-direction:column}
+.project-row{
+  display:grid;grid-template-columns:3rem 1fr auto;
+  gap:1.5rem;align-items:start;
+  padding:2rem 0;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  text-decoration:none;color:inherit;
+  transition:opacity 0.2s;cursor:pointer;
+}
+.project-row:first-child{border-top:1px solid rgba(0,0,0,0.08)}
+.project-row:hover{opacity:0.58}
+.project-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;font-weight:300;color:rgba(10,10,9,0.28);padding-top:4px;
+}
+.project-tag-pill{
+  display:inline-flex;align-items:center;
+  padding:2px 9px;border-radius:100px;
+  font-size:11px;font-weight:400;letter-spacing:0.04em;
+  background:rgba(10,10,9,0.06);color:rgba(10,10,9,0.45);
+  margin-bottom:7px;
+}
+.project-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;font-weight:400;
+  color:var(--ink);line-height:1.15;letter-spacing:-0.01em;margin-bottom:0.5rem;
+}
+.project-desc{
+  font-size:13px;font-weight:300;
+  color:rgba(10,10,9,0.5);line-height:1.75;max-width:480px;
+}
+.project-arrow{font-size:20px;color:rgba(10,10,9,0.22);padding-top:5px;transition:transform 0.2s,color 0.2s}
+.project-row:hover .project-arrow{transform:translate(3px,-3px);color:var(--ink)}
+.demo-frame{margin-top:1rem;border:1px solid rgba(0,0,0,0.09);border-radius:6px;overflow:hidden;background:#fff}
+.demo-toolbar{padding:9px 13px;border-bottom:1px solid rgba(0,0,0,0.07);display:flex;align-items:center;gap:5px;background:#f8f8f8}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.demo-placeholder{padding:2.5rem 2rem;text-align:center;font-size:13px;font-style:italic;color:rgba(10,10,9,0.28)}
+
+/* WRITING — dark */
+.writing-section{background:#111110;padding:90px 2.5rem}
+.writing-inner{max-width:900px;margin:0 auto}
+.writing-section .section-label{color:rgba(245,243,238,0.28)}
+.writing-section .section-label::after{background:rgba(255,255,255,0.07)}
+.blog-list{margin-top:3.5rem;display:flex;flex-direction:column}
+.blog-row{
+  display:grid;grid-template-columns:5rem 1fr auto;
+  gap:1.5rem;align-items:center;
+  padding:1.6rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  text-decoration:none;color:inherit;cursor:pointer;transition:opacity 0.2s;
+}
+.blog-row:first-child{border-top:1px solid rgba(255,255,255,0.06)}
+.blog-row:hover{opacity:0.5}
+.blog-date{font-size:11px;letter-spacing:0.05em;color:rgba(245,243,238,0.28)}
+.blog-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:300;
+  color:var(--paper);letter-spacing:-0.01em;
+}
+.blog-chip{
+  font-size:11px;padding:3px 10px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.1);
+  color:rgba(245,243,238,0.35);white-space:nowrap;
+}
+
+/* CURRENTLY OBSESSED WITH */
+.obsessed-section{background:#0c0b0f;padding:90px 2.5rem;border-top:1px solid rgba(255,255,255,0.05)}
+.obsessed-inner{max-width:900px;margin:0 auto}
+.obsessed-section .section-label{color:rgba(245,243,238,0.28)}
+.obsessed-section .section-label::after{background:rgba(255,255,255,0.07)}
+.obsessed-intro{
+  font-size:14px;font-weight:300;line-height:1.8;
+  color:rgba(245,243,238,0.4);max-width:480px;
+  margin-bottom:3.5rem;margin-top:-1rem;
+  font-style:italic;
+}
+.obsessed-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:4px;overflow:hidden;
+}
+.obs-card{
+  background:#0c0b0f;
+  padding:1.8rem 2rem;
+  transition:background 0.25s;
+  cursor:default;
+}
+.obs-card:hover{background:#131218}
+.obs-category{
+  font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(245,243,238,0.22);margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:8px;
+}
+.obs-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+}
+.obs-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:400;
+  color:var(--paper);line-height:1.25;
+  margin-bottom:0.55rem;letter-spacing:-0.01em;
+}
+.obs-detail{
+  font-size:13px;font-weight:300;line-height:1.7;
+  color:rgba(245,243,238,0.45);
+}
+.obs-detail em{
+  font-style:italic;
+  color:rgba(245,243,238,0.6);
+}
+.obs-updated{
+  margin-top:2.5rem;
+  font-size:11px;letter-spacing:0.08em;
+  color:rgba(245,243,238,0.18);
+}
+.obs-updated span{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:#3d8b85;margin-right:7px;vertical-align:middle;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* FOOTER */
+footer{
+  background:var(--ink);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:2.5rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;color:rgba(245,243,238,0.3)}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{
+  font-size:12px;letter-spacing:0.07em;text-transform:uppercase;
+  color:rgba(245,243,238,0.22);text-decoration:none;transition:color 0.2s;
+}
+.footer-links a:hover{color:var(--paper)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  nav{padding:0 1.4rem}
+  .hero-content{padding:0 1.4rem 4rem;padding-top:100px}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .section-inner{padding:70px 1.4rem}
+  .band{padding:70px 1.4rem}
+  .writing-section{padding:70px 1.4rem}
+  .lang-stripe{padding:2rem 1.4rem}
+  .obsessed-section{padding:70px 1.4rem}
+  .obsessed-grid{grid-template-columns:1fr}
+  .blog-row{grid-template-columns:1fr auto}
+  .blog-date{display:none}
+  footer{padding:2rem 1.4rem}
+  .scroll-stats{gap:1.5rem}
+  .project-row{grid-template-columns:1fr auto}
+  .project-num{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Marili Kammenou</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#currently">Currently</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Maths &amp; Data Science · IBM AI Placement · Agentic AI Builder · Aspiring Quant</p>
+    <h1>Built on equations.<br/><em>Pointed at markets.</em></h1>
+    <p class="hero-bio">
+      Maths and statistics gave me the foundation.
+      Data science gave me the instincts.
+      <strong>Agentic AI is where I work now</strong> — building systems that
+      reason, act, and get things done. Currently directing that towards quantitative finance.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-light">See my work →</a>
+      <a href="#writing" class="btn btn-outline">Read the blog</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-hint">Scroll to explore</span>
+    <div class="scroll-stats">
+      <div class="stat-item">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Languages</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">IBM</span>
+        <span class="stat-label">Placement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ART BREAK 1 — warm gold/amber -->
+<div class="art-divider"><canvas id="art1"></canvas></div>
+
+<!-- ══════════════════════ ABOUT ══════════════════════ -->
+<section id="about">
+  <div class="section-inner reveal">
+    <p class="section-label">About me</p>
+    <h2>Building at the frontier<br/><em>of what AI can do.</em></h2>
+
+    <div class="about-grid">
+      <div class="about-prose">
+        <p>I'm <strong>Marili</strong> — studying Mathematics, Statistics &amp; Data Science at the University of Bath, currently on industrial placement at IBM as a Data &amp; AI Technology Sales specialist.</p>
+        <p>At IBM I built GenAI agents using <strong>watsonx Orchestrate</strong> — a banking companion and an emerging markets companion — and delivered demos to clients including BlackRock, Citi, and Royal Holloway at an AI in Finance event. I also co-built <strong>Frontier</strong>, an AI-powered investment research platform for emerging markets using LangGraph and Google Gemini. That work deepened a growing interest in quantitative finance — specifically how systematic strategies can be built on the kind of alternative data intelligence Frontier is designed to surface.</p>
+        <p>Outside work I placed <strong>1st out of 13 teams</strong> at the IBM × LBG Innovation Hackathon, building a fintech retirement product for the self-employed.</p>
+        <p>I speak six languages — Greek, English, French, Spanish, German, and Italian. When I'm not in front of a screen, I'm singing: it's the one thing that reliably pulls me out of my own head.</p>
+        <p>If something here resonates, I'd love to hear from you.</p>
+      </div>
+
+      <div class="about-facts">
+        <div class="fact-row">
+          <p class="fact-key">Education</p>
+          <p class="fact-val">BSc Mathematics, Statistics &amp; Data Science<br/>University of Bath · 2023–2027</p>
+        </div>
+        <div class="fact-row">
+          <p class="fact-key">Currently</p>
+          <p class="fact-val">IBM Data &amp; AI Technology Sales<br/>Industrial Placement · London<br/><span style="color:rgba(245,243,238,0.35);font-size:13px">Exploring: Quantitative Research &amp; Systematic Trading</span></p>
+        </div>
+        <div class="fact-row">
+          <p class="fact-key">Technical</p>
+          <p class="fact-val">Python · R · LangGraph · watsonx Orchestrate · Google Gemini · Tavily</p>
+        </div>
+        <div class="fact-row">
+          <p class="fact-key">Say hello</p>
+          <p class="fact-val"><a href="mailto:marili.kammenos@gmail.com">marili.kammenos@gmail.com</a></p>
+        </div>
+        <div class="fact-row">
+          <p class="fact-key">Find me</p>
+          <div class="social-row">
+            <a href="https://github.com/marilikammenou/frontier" target="_blank" rel="noopener" class="social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              github.com/marilikammenou/frontier
+            </a>
+            <a href="https://linkedin.com/in/mariaangelikikammenou" target="_blank" rel="noopener" class="social-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              linkedin.com/in/mariaangelikikammenou
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES STRIPE -->
+<div class="lang-stripe">
+  <div class="lang-inner">
+    <span class="lang-label">Languages</span>
+    <div class="lang-items">
+      <div class="lang-item">Greek<span>Native</span></div>
+      <div class="lang-item">English<span>Fluent</span></div>
+      <div class="lang-item">French<span>DELF B2</span></div>
+      <div class="lang-item">Spanish<span>Proficient</span></div>
+      <div class="lang-item">German<span>Goethe A2</span></div>
+      <div class="lang-item">Italian<span>Elementary</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ART BREAK 2 — violet/teal -->
+<div class="art-divider"><canvas id="art2"></canvas></div>
+
+<!-- ══════════════════════ PROJECTS ══════════════════════ -->
+<div id="projects" class="band">
+  <div class="band section-inner" style="padding:0;max-width:900px;margin:0 auto">
+    <p class="section-label">Selected work</p>
+    <h2>Projects &amp; <em>demos</em></h2>
+
+    <div class="projects-list reveal">
+
+      <a class="project-row" href="https://github.com/marilikammenou/frontier" target="_blank" rel="noopener">
+        <span class="project-num">01</span>
+        <div>
+          <span class="project-tag-pill">LangGraph · Gemini · Tavily · Python</span>
+          <p class="project-title">Frontier — AskMarketIQ</p>
+          <p class="project-desc">AI-powered investment research platform for emerging markets. Real-time web search, agentic workflows, interactive choropleth maps and multi-panel data visualisation.</p>
+          <div class="demo-frame">
+            <div class="demo-toolbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <div class="demo-placeholder">Add a screenshot or iframe of the live demo here</div>
+          </div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-row" href="#" onclick="return false;">
+        <span class="project-num">02</span>
+        <div>
+          <span class="project-tag-pill">IBM watsonx Orchestrate</span>
+          <p class="project-title">Banking Companion Agent</p>
+          <p class="project-desc">GenAI agent for enterprise banking clients. Demonstrated to senior stakeholders at BlackRock, Citi, and Royal Holloway at the AI in Finance event.</p>
+          <div class="demo-frame">
+            <div class="demo-toolbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <div class="demo-placeholder">Add a screenshot or demo recording here</div>
+          </div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-row" href="#" onclick="return false;">
+        <span class="project-num">03</span>
+        <div>
+          <span class="project-tag-pill">IBM watsonx Orchestrate</span>
+          <p class="project-title">Emerging Markets Companion Agent</p>
+          <p class="project-desc">GenAI agent targeting emerging market clients. Part of an agentic AI programme contributing to £300K pipeline generation at IBM.</p>
+          <div class="demo-frame">
+            <div class="demo-toolbar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+            <div class="demo-placeholder">Add a screenshot or demo recording here</div>
+          </div>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+      <a class="project-row" href="#" onclick="return false;">
+        <span class="project-num">04</span>
+        <div>
+          <span class="project-tag-pill">1st / 13 teams · IBM × LBG Hackathon</span>
+          <p class="project-title">Fintech Retirement Product</p>
+          <p class="project-desc">Won the IBM × Lloyds Banking Group Innovation Hackathon, building a fintech retirement product for the self-employed.</p>
+        </div>
+        <span class="project-arrow">↗</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ART BREAK 3 — rose/coral -->
+<div class="art-divider"><canvas id="art3"></canvas></div>
+
+<!-- ══════════════════════ WRITING ══════════════════════ -->
+<style>
+.blog-row{cursor:pointer}
+.article-body{
+  display:none;
+  grid-column:1/-1;
+  padding:2rem 0 1rem 5.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  animation:fadeIn 0.35s ease;
+}
+.article-body.open{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.article-body p{
+  font-size:14.5px;font-weight:300;line-height:1.95;
+  color:rgba(245,243,238,0.6);margin-bottom:1.4rem;max-width:600px;
+}
+.article-body p strong{color:var(--paper);font-weight:400}
+.article-body h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:400;
+  color:var(--paper);margin:2rem 0 0.8rem;letter-spacing:-0.01em;
+}
+.article-body .close-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(245,243,238,0.28);cursor:pointer;
+  margin-top:1rem;transition:color 0.2s;background:none;border:none;
+  font-family:'Inter',sans-serif;padding:0;
+}
+.article-body .close-btn:hover{color:var(--paper)}
+.blog-row-wrap{display:flex;flex-direction:column}
+.blog-row .blog-toggle{
+  font-size:11px;letter-spacing:0.06em;
+  color:rgba(245,243,238,0.22);transition:color 0.2s;
+  margin-left:auto;white-space:nowrap;
+}
+.blog-row:hover .blog-toggle{color:rgba(245,243,238,0.55)}
+</style>
+
+<div id="writing" class="writing-section">
+  <div class="writing-inner">
+    <p class="section-label">On AI</p>
+    <h2>Notes &amp; <em>observations</em></h2>
+
+    <div class="blog-list reveal">
+
+      <!-- REAL ARTICLE -->
+      <div class="blog-row-wrap">
+        <div class="blog-row" onclick="toggleArticle('article-frontier')">
+          <span class="blog-date">May 2025</span>
+          <span class="blog-title">What I learned building Frontier</span>
+          <span class="blog-chip">Reflection</span>
+        </div>
+        <div class="article-body" id="article-frontier">
+
+          <p>The idea behind Frontier was simple enough: instead of asking an AI to summarise a document, ask it to go and find everything relevant about an emerging market — macro conditions, political risk, sector opportunity, FX dynamics — and return something you could actually act on. A research brief, not a list of links.</p>
+
+          <p>What I didn't expect was that the hardest part wouldn't be the AI at all.</p>
+
+          <h3>The AI was the easy part</h3>
+          <p>LangGraph made the multi-agent orchestration surprisingly manageable. You define nodes, you define edges, you run them in parallel. The six research nodes — macro, political risk, sector, exit landscape, FX, market timing — all fire simultaneously and their outputs feed into a single synthesis call. Getting that working took less time than I expected.</p>
+          <p>Google Gemini handled the synthesis well. Tavily pulled live web data per node. The technical stack came together faster than the thinking behind it.</p>
+
+          <h3>Making the output actually useful — that was the hard part</h3>
+          <p>The first version returned a wall of text. Technically correct, sometimes impressive, almost entirely unusable. It answered the question asked but didn't answer the question behind it: <strong>what should I do with this?</strong></p>
+          <p>The shift that mattered most was structural. Moving from a freeform synthesis to a rigidly templated brief — with named sections, a consistent hierarchy, chart data extracted alongside the prose — forced the model to organise its thinking in a way that was actually readable. The constraint made it better.</p>
+          <p>The second shift was the router. Simple or definitional queries don't need a 25-second pipeline. Adding a pre-classifier that answers those in 2–3 seconds changed how the whole system felt to use. Speed is a design decision, not just an engineering one.</p>
+
+          <h3>What I'd do differently</h3>
+          <p>Build the backend properly before touching the frontend. I got drawn into the D3 choropleth maps and Chart.js panels earlier than I should have — they're satisfying to build and they look good, but they created pressure to make the data fit the visualisation rather than the other way around. Backend first, always.</p>
+          <p>I'd also connect real data APIs from the start rather than using stubs. The stubs were fine for prototyping but they delayed the moment of reckoning: does this actually work on real, messy, inconsistent data? That question should come early, not late.</p>
+
+          <h3>The thing that surprised me most</h3>
+          <p>How much the quality of the output depends on the quality of the prompt architecture — not the model choice, not the framework, not the infrastructure. The model is the least interesting variable. What you ask it to do, in what order, with what constraints, and how you structure what comes back: that's where the real work is. That's what takes time to get right.</p>
+          <p>Frontier is on GitHub if you want to look at the code. The README explains the architecture in more detail than I've gone into here.</p>
+
+          <button class="close-btn" onclick="toggleArticle('article-frontier');event.stopPropagation()">↑ Collapse</button>
+        </div>
+      </div>
+
+      <!-- IBM ARTICLE -->
+      <div class="blog-row-wrap">
+        <div class="blog-row" onclick="toggleArticle('article-ibm')">
+          <span class="blog-date">Apr 2025</span>
+          <span class="blog-title">What I've learned building agents at IBM</span>
+          <span class="blog-chip">Reflection</span>
+        </div>
+        <div class="article-body" id="article-ibm">
+
+          <p>Before I built Frontier, I built agents at IBM. The tools were different — watsonx Orchestrate instead of LangGraph, enterprise constraints instead of a blank canvas — but the problems were surprisingly similar. And the most important thing I learned had nothing to do with the technology.</p>
+
+          <h3>The demo is part of the product</h3>
+          <p>At IBM, everything you build eventually goes in front of a client. I presented agents to senior stakeholders at major financial institutions and universities. These were not developers. They were not interested in architecture decisions or framework comparisons. They wanted to know one thing: <strong>does this solve a problem I actually have?</strong></p>
+          <p>That question changes how you build. When you know a non-technical audience will be in the room, you stop optimising for technical elegance and start optimising for clarity. What does the agent say when it's working? What does it say when it isn't? How do you explain what it's doing without losing the room?</p>
+          <p>The ability to communicate AI clearly — to make it feel useful rather than impressive — is a skill that doesn't appear in any tutorial. You learn it by being in the room when it goes wrong, and figuring out how to recover.</p>
+
+          <h3>Enterprise constraints are a design input, not an obstacle</h3>
+          <p>Building inside IBM meant building inside guardrails. Approved tools, security requirements, stakeholder sign-off at each stage. Early on this felt like friction. Later it felt like useful pressure — it forced clarity about what the agent actually needed to do, rather than what was interesting to build.</p>
+          <p>The banking companion agent I built had to work within tight parameters. No hallucinations, predictable outputs, clear failure modes. Those constraints pushed me towards better prompt architecture and more careful output validation than I would have applied working alone. Some of the habits I developed there carried directly into Frontier.</p>
+
+          <h3>The gap between demos and real problems</h3>
+          <p>The agents I built at IBM were responding to real briefs from real clients — not invented problem statements from a course. That gap is larger than it sounds. Real problems are messier, less well-defined, and often not quite what the client said they were when you first heard them.</p>
+          <p>Learning to scope an agent properly — to ask what it needs to do, what it shouldn't do, and what happens at the edges — came from working with actual stakeholders, not from documentation.</p>
+
+          <h3>What IBM didn't give me — and Frontier did</h3>
+          <p>Scope. The agents I built at IBM were focused, contained, purposeful. Frontier was something different — six parallel research nodes, a streaming API, a full frontend, a synthesis layer that had to hold everything together. The complexity was an order of magnitude higher, and there was no framework telling me what to do next.</p>
+          <p>IBM taught me how to build agents that land with real people. Frontier taught me how to build a system. Both turned out to be necessary.</p>
+
+          <button class="close-btn" onclick="toggleArticle('article-ibm');event.stopPropagation()">↑ Collapse</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleArticle(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+
+<!-- ══════════════════════ CURRENTLY OBSESSED WITH ══════════════════════ -->
+<div id="currently" class="obsessed-section">
+  <div class="obsessed-inner">
+    <p class="section-label">Right now</p>
+    <h2>Currently <em>obsessed with</em></h2>
+    <p class="obsessed-intro">A window into where my attention is living at the moment. Updated whenever something new takes over.</p>
+
+    <div class="obsessed-grid reveal">
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#c9a84c"></span>Building</p>
+        <p class="obs-title">Frontier — AskMarketIQ</p>
+        <p class="obs-detail"><em>"An emerging markets intelligence platform that runs a six-node parallel research pipeline — macro, political risk, FX, sector — and returns a structured brief in under 30 seconds. Built with LangGraph, FastAPI, and Gemini. The hardest part wasn't the AI — it was making the output actually useful."</em></p>
+      </div>
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#c4697a"></span>Reading</p>
+        <p class="obs-title">Advances in Financial Machine Learning — López de Prado</p>
+        <p class="obs-detail"><em>"Every chapter makes me realise how different rigorous quant research is from standard ML. The section on cross-validation alone changes how you think about backtesting entirely."</em></p>
+      </div>
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#3d8b85"></span>Eating</p>
+        <p class="obs-title">On a mission to find the best fusion cuisine in London</p>
+        <p class="obs-detail"><em>"Current leader: Nikkei — the Japanese-Peruvian combination shouldn't work as well as it does. Still searching."</em></p>
+      </div>
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#7c5cbf"></span>Thinking about</p>
+        <p class="obs-title">Whether systematic strategies can be built on alternative data signals traditional quant funds haven't priced in yet</p>
+        <p class="obs-detail"><em>"The edge in emerging markets might not be better models — it might be better data. Still working out what that means in practice."</em></p>
+      </div>
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#5a8fc4"></span>Listening to</p>
+        <p class="obs-title">Greek summer music</p>
+        <p class="obs-detail"><em>"The kind that only makes sense when the sun is setting over the sea. Deeply nostalgic for something that hasn't happened yet this year."</em></p>
+      </div>
+
+      <div class="obs-card">
+        <p class="obs-category"><span class="obs-dot" style="background:#d4956a"></span>Wanting to go</p>
+        <p class="obs-title">Three weeks through Tokyo, Kyoto, and Osaka</p>
+        <p class="obs-detail"><em>"The plan: eat everything, get deliberately lost, and find out if the contrast between Tokyo's chaos and Kyoto's quiet is as extreme as everyone says it is."</em></p>
+      </div>
+
+    </div>
+
+    <p class="obs-updated"><span></span>Last updated May 2025 — replace these with your real answers</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Marili Kammenou · 2025</span>
+  <ul class="footer-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#writing">Writing</a></li>
+    <li><a href="#currently">Currently</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:marili.kammenos@gmail.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+/* ── HERO: animated node network ── */
+(function(){
+  const cv=document.getElementById('heroCanvas'),ctx=cv.getContext('2d');
+  const COLS=['#c9a84c','#c4697a','#3d8b85','#7c5cbf','#5a8fc4','#d4956a'];
+  let W,H,nodes=[],raf;
+  function resize(){
+    W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;
+  }
+  function init(){
+    resize();nodes=[];
+    const n=Math.max(40,Math.floor(W*H/8000));
+    for(let i=0;i<n;i++) nodes.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
+      r:Math.random()*1.6+.5,
+      col:COLS[Math.floor(Math.random()*COLS.length)],
+      op:Math.random()*.55+.2
+    });
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    // Background gradient
+    const g=ctx.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#0c0b10');g.addColorStop(.5,'#0a0a09');g.addColorStop(1,'#0d0b0f');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    // Lines
+    for(let i=0;i<nodes.length;i++) for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){
+        ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.strokeStyle=`rgba(200,175,130,${(1-d/130)*.065})`;ctx.lineWidth=.5;ctx.stroke();
+      }
+    }
+    // Dots
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle=n.col;ctx.globalAlpha=n.op;ctx.fill();ctx.globalAlpha=1;
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;
+    });
+    raf=requestAnimationFrame(frame);
+  }
+  init();frame();
+  window.addEventListener('resize',()=>{cancelAnimationFrame(raf);init();frame()});
+})();
+
+/* ── ART CANVAS helper ── */
+function paintArt(id,bg,palette){
+  const cv=document.getElementById(id);
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  function render(){
+    const W=cv.width=cv.offsetWidth,H=cv.height=cv.offsetHeight;
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    // soft radial blobs
+    for(let i=0;i<22;i++){
+      const x=Math.random()*W,y=Math.random()*H,r=Math.random()*200+70;
+      const c=palette[Math.floor(Math.random()*palette.length)];
+      const g=ctx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0,c+'26');g.addColorStop(1,c+'00');
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    }
+    // horizontal light sweeps
+    for(let i=0;i<5;i++){
+      const y=Math.random()*H,c=palette[Math.floor(Math.random()*palette.length)];
+      const g=ctx.createLinearGradient(0,y,W,y);
+      g.addColorStop(0,'transparent');g.addColorStop(.5,c+'14');g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,y-35,W,70);
+    }
+  }
+  render();window.addEventListener('resize',render);
+}
+
+paintArt('art1','#15120d',['#c9a84c','#d4956a','#b8603a','#e8c97a','#9a7030']);
+paintArt('art2','#0d0e15',['#7c5cbf','#3d8b85','#5a8fc4','#4a3d8b','#2d6b6b']);
+paintArt('art3','#130d10',['#c4697a','#a84d6b','#c9a84c','#8b4560','#d4816a']);
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
